@@ -1,4 +1,4 @@
-const buttonColors = ["red", "blue", "green", "yellow"];
+const buttonColors = ["yellow", "blue", "green", "red"];
 let gamePattern = [];
 let userClickedPattern = [];
 let activeAudio = [];
