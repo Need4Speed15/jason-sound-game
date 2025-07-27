@@ -25,6 +25,13 @@ document.addEventListener("keydown", function(event) {
   }
 });
 
+document.addEventListener("touchstart", function(event) {
+  if (!started) {
+    nextSequence();
+    started = true;
+  }
+});
+
 
 function nextSequence() {
   userClickedPattern = [];
