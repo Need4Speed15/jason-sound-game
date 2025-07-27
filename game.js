@@ -1,6 +1,7 @@
 const buttonColors = ["red", "blue", "green", "yellow"];
 let gamePattern = [];
 let userClickedPattern = [];
+let activeAudio = [];
 
 let level = 0;
 let started = false;
@@ -36,6 +37,7 @@ function nextSequence() {
   button.classList.add("pressed");
   const audio = new Audio(`./sounds/${randomChosenColor}.mp3`);
   audio.play();
+  activeAudio.push(audio);
   setTimeout(() => {
     button.classList.remove("pressed");
   }, 100);
@@ -44,7 +46,9 @@ function nextSequence() {
 function playSound(name) {
   const audio = new Audio(`./sounds/${name}.mp3`);
   audio.play();
-};
+  activeAudio.push(audio);
+}
+
 
 function animatePress(name) {
   const button = document.querySelector("#" + name);
@@ -64,6 +68,11 @@ function checkAnswer(currentLevel) {
     }
   } else {
     console.log("loser");
+    activeAudio.forEach(audio => {
+      audio.pause();
+      audio.currentTime = 0;
+    });
+    activeAudio = [];
     const wrongSound = new Audio("./sounds/wrong.mp3");
     wrongSound.play();
     const body = document.querySelector("body");
