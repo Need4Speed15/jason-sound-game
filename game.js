@@ -47,7 +47,7 @@ function nextSequence() {
   activeAudio.push(audio);
   setTimeout(() => {
     button.classList.remove("pressed");
-  }, 100);
+  }, 500);
 }
 
 function playSound(name) {
@@ -69,9 +69,14 @@ function checkAnswer(currentLevel) {
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
     console.log("winner");
     if (userClickedPattern.length === gamePattern.length) {
+      const body = document.querySelector("body");
+      body.style.backgroundColor = "green";
       setTimeout(() => {
-        nextSequence();
-      }, 3500);
+        body.style.backgroundColor = "#011F3F";
+        setTimeout(() => {
+          nextSequence();;
+        }, 1000);
+      }, 2200);
     }
   } else {
     console.log("loser");
